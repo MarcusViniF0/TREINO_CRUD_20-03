@@ -9,6 +9,14 @@
 </head>
 <body>
     <div class="container">
+
+        <?php if($this->session->flashdata("success")):?>
+        <p class="alert alert-success"><?=$this->session->flashdata("success")?></p>
+        <?php endif ?>
+
+        <?php if($this->session->flashdata("danger")):?>
+        <p class="alert alert-danger"><?=$this->session->flashdata("danger")?></p>
+        <?php endif ?>
         <h1>Produtos</h1>
         <table class="table">
             <tr>
@@ -24,6 +32,34 @@
             </tr>
             <?php endforeach?>
         </table>
+        <h1>Login</h1>
+        <?php 
+        echo form_open(action:"Login/autenticar");
+
+        echo form_label(label_text:"Email", id:"email");
+        echo form_input(array(
+            "name"=>"email",
+            "id"=>"email",
+            "class"=>"form-control",
+            "maxlength"=>"255"
+        ));
+
+        echo form_label(label_text:"Senha", id:"senha");
+        echo form_password(array(
+            "name"=>"senha",
+            "id"=>"senha",
+            "class"=>"form-control",
+            "maxlength"=>"255"
+        ));
+
+        echo form_button(array(
+            "class"=>"btn btn-primary",
+            "type"=>"submit",
+            "content"=>"Login"
+        ));
+
+        echo form_close();
+        ?>
             <h1>Cadastro</h1>
         <?php 
         echo form_open(action:"usuarios/novo");
