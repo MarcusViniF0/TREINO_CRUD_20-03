@@ -17,6 +17,9 @@
         <?php if($this->session->flashdata("danger")):?>
         <p class="alert alert-danger"><?=$this->session->flashdata("danger")?></p>
         <?php endif ?>
+        
+        <?php if($this->session->userdata("usuario_logado")):?>
+        
         <h1>Produtos</h1>
         <table class="table">
             <tr>
@@ -32,6 +35,11 @@
             </tr>
             <?php endforeach?>
         </table>
+        <?= anchor("produtos/formulario","Novo Produto",array("class"=>"btn btn-primary"))?>
+
+        <?= anchor("login/logout","Sair",array("class"=>"btn btn-primary")) ?>
+
+        <?php else: ?>
         <h1>Login</h1>
         <?php 
         echo form_open(action:"Login/autenticar");
@@ -96,6 +104,7 @@
 
         echo form_close();
         ?>
+        <?php endif ?>
 </div>
 </body>
 </html>
